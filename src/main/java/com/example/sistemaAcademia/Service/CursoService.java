@@ -17,13 +17,22 @@ public class CursoService {
         this.cursoRepository = cursoRepository;
     }
 
-    public List<CursoDTO> findAll() {
-        return cursoRepository.findAll()
-                .stream()
-                .map(this::convertirACursoDTO)
-                .collect(Collectors.toList());
+    public List<CursoDTO> findAll(String nombre) {
+        List<Curso> cursos;
+        if (nombre != null && !nombre.isEmpty()) {
+            cursos = cursoRepository.findByNombreContainingIgnoreCase(nombre);
+        } else {
+            cursos = cursoRepository.findAll();
+        }
+        return cursos.stream().map(this::convertirACursoDTO).collect(Collectors.toList());
     }
-    
+
+    public CursoDTO findById(Long id) {
+        return cursoRepository.findById(id)
+                .map(this::convertirACursoDTO)
+                .orElse(null);
+    }
+
     public CursoDTO save(Curso curso) {
         Curso guardado = cursoRepository.save(curso);
         return convertirACursoDTO(guardado);
@@ -33,13 +42,12 @@ public class CursoService {
         cursoRepository.deleteById(id);
     }
 
-    // 🔹 Conversión de Entity -> DTO
     private CursoDTO convertirACursoDTO(Curso curso) {
         return new CursoDTO(
-                curso.getId_curso(),
+                curso.getId(),
                 curso.getNombre(),
                 curso.getCreditos(),
-                curso.getRequisitos() != null ? curso.getRequisitos().getId_curso() : null
+                curso.getRequisito() != null ? curso.getRequisito().getId() : null
         );
     }
 }

@@ -2,14 +2,10 @@ package com.example.sistemaAcademia.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class ProfesorDTO {
-
-    private Long idProfesor;
+public class CursosPorProfesorDTO {
     private String nombreProfesor;
-    private String correo;
+    private Long cantidadCursos;
 }

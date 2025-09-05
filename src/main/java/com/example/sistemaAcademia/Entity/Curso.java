@@ -1,4 +1,3 @@
-
 package com.example.sistemaAcademia.Entity;
 
 import jakarta.persistence.*;
@@ -12,7 +11,7 @@ public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_curso;
+    private Long id;
 
     @Column(nullable = false, length = 40)
     private String nombre;
@@ -21,6 +20,6 @@ public class Curso {
     private int creditos;
 
     @ManyToOne
-    @JoinColumn(name = "id_requisitos")
-    private Curso requisitos;
+    @JoinColumn(name = "id_requisito")
+    private Curso requisito;
 }

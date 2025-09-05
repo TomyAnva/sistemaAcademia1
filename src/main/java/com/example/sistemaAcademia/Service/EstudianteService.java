@@ -17,11 +17,20 @@ public class EstudianteService {
         this.estudianteRepository = estudianteRepository;
     }
 
-    public List<EstudianteDTO> findAll() {
-        return estudianteRepository.findAll()
-                .stream()
+    public List<EstudianteDTO> findAll(String apellido) {
+        List<Estudiante> estudiantes;
+        if (apellido != null && !apellido.isEmpty()) {
+            estudiantes = estudianteRepository.findByApellidoContainingIgnoreCase(apellido);
+        } else {
+            estudiantes = estudianteRepository.findAll();
+        }
+        return estudiantes.stream().map(this::convertirAEstudianteDTO).collect(Collectors.toList());
+    }
+
+    public EstudianteDTO findById(Integer id) {
+        return estudianteRepository.findById(id)
                 .map(this::convertirAEstudianteDTO)
-                .collect(Collectors.toList());
+                .orElse(null);
     }
 
     public EstudianteDTO save(Estudiante estudiante) {
@@ -33,7 +42,6 @@ public class EstudianteService {
         estudianteRepository.deleteById(id);
     }
 
-    // 🔹 Conversión de Entity -> DTO
     private EstudianteDTO convertirAEstudianteDTO(Estudiante estudiante) {
         return new EstudianteDTO(
                 estudiante.getCarnet(),
@@ -43,4 +51,3 @@ public class EstudianteService {
         );
     }
 }
-
