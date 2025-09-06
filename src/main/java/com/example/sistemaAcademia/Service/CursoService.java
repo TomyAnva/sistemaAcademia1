@@ -44,10 +44,10 @@ public class CursoService {
 
     private CursoDTO convertirACursoDTO(Curso curso) {
         return new CursoDTO(
-                curso.getId(),
+                curso.getId_curso(),
                 curso.getNombre(),
                 curso.getCreditos(),
-                curso.getRequisito() != null ? curso.getRequisito().getId() : null
+                curso.getRequisitos() != null ? curso.getRequisitos().getId_curso() : null
         );
     }
 }
