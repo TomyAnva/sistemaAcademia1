@@ -1,16 +1,10 @@
 package com.example.sistemaAcademia.Repository;
 
-import com.example.sistemaAcademia.DTO.NotaPromedioCursoDTO;
-import com.example.sistemaAcademia.DTO.EstudiantesPorCicloDTO;
 import com.example.sistemaAcademia.Entity.Curso;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-@Repository
 public interface CursoRepository extends JpaRepository<Curso, Long> {
+<<<<<<< HEAD
 
     // Buscar cursos por nombre (ej: "programación")
     List<Curso> findByNombreContainingIgnoreCase(String nombre);
@@ -46,3 +40,7 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 
 
 
+=======
+}
+
+>>>>>>> parent of 3abd775 (Commit semana 8)

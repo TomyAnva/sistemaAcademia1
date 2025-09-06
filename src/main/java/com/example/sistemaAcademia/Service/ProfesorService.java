@@ -17,20 +17,11 @@ public class ProfesorService {
         this.profesorRepository = profesorRepository;
     }
 
-    public List<ProfesorDTO> findAll(String correo) {
-        List<Profesor> profesores;
-        if (correo != null && !correo.isEmpty()) {
-            profesores = profesorRepository.findByCorreoContainingIgnoreCase(correo);
-        } else {
-            profesores = profesorRepository.findAll();
-        }
-        return profesores.stream().map(this::convertirAProfesorDTO).collect(Collectors.toList());
-    }
-
-    public ProfesorDTO findById(Long id) {
-        return profesorRepository.findById(id)
+    public List<ProfesorDTO> findAll() {
+        return profesorRepository.findAll()
+                .stream()
                 .map(this::convertirAProfesorDTO)
-                .orElse(null);
+                .collect(Collectors.toList());
     }
 
     public ProfesorDTO save(Profesor profesor) {
@@ -51,3 +42,5 @@ public class ProfesorService {
         );
     }
 }
+
+

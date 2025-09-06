@@ -1,12 +1,10 @@
 package com.example.sistemaAcademia.Repository;
 
-import com.example.sistemaAcademia.DTO.EstudiantesPorCicloDTO;
 import com.example.sistemaAcademia.Entity.Estudiante;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import java.util.List;
 
 public interface EstudianteRepository extends JpaRepository<Estudiante, Integer> {
+<<<<<<< HEAD
 
     List<Estudiante> findByApellidoContainingIgnoreCase(String apellido);
     
@@ -15,3 +13,6 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Integer>
 "GROUP BY ci.clase.cicloAcademico")
     List<EstudiantesPorCicloDTO> contarEstudiantesPorCiclo();
 }
+=======
+}
+>>>>>>> parent of 3abd775 (Commit semana 8)
